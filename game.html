@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>game</title>
+    <link rel="stylesheet" href="game.css">
+ 
+</head>
+<body >
+    <div id="container">
+       <div id="question-container" class="hide">
+           <div id="question">
+               Question
+           </div>
+           <div id="ans-btn">
+              <div> <button class="btn  ">Answer1</button></div>
+               <div><button class="btn  ">Answer2</button></div>
+             <div> <button class="btn ">Answer3</button></div>
+           <div>    <button class="btn  ">Answer4</button></div>
+           </div>
+       </div>
+       <div class="controls">
+           <button id="start-btn" class="start-btn">Start</button>
+           <button id="next-btn" class="next-btn hide"  >Next</button>
+      <button  id="submit-btn" class="submit-btn hide">Submit</button>
+       </div>
+
+    
+    </div>
+    <div class="exit hide">
+        <h2  style="position:centre; ">Thanks </h2>
+    </div>
+    <script>
+         
+      
+          const QuesAndAns=[
+          
+           
+            {
+                question:"Upon encountering empty statements, what does the Javascript Interpreter do?",
+                Answer:[{text:"Ignores the Statement",correct:true},{text:"Gives a warning",correct:false},{text:"Throws an error",correct:false},{text:"None of the above",correct:false}]
+            },
+            {
+                question:"Which of the following methods can be used to display data in some form using Javascript?",
+                Answer:[{text:"document.write()",correct:false},{text:"console.log()",correct:false},{text:"window.alert()",correct:false},{text:"All of the above",correct:true}]
+            },
+            {
+                question:"What keyword is used to check whether a given property is valid or not?",
+                Answer:[{text:"exists",correct:false},{text:"in",correct:true},{text:"is in",correct:false},{text:"lies",correct:false}]
+            },
+            {
+                question:"What is the use of the <noscript> tag in Javascript?",
+                Answer:[{text:"The contents are displayed by non-JS- based browsers",correct:true},{text:"Clears all the cookies and cache",correct:false},{text:"Both A and B",correct:false},{text:"none of the above",correct:false}]
+            },
+            {
+                question:"When an operator’s value is NULL, the typeof returned by the unary operator is:",
+                Answer:[{text:"Boolean",correct:false},{text:"Undefined.",correct:false},{text:"Object",correct:true},{text:"Integer",correct:false}]
+            }
+            
+             ]
+       var count;
+          var submit=document.getElementById('submit-btn');
+        submit.addEventListener("click",thanks)
+             var nextQues=document.getElementById("question");
+       
+        var element=document.getElementById("start-btn");
+        var AnsButtonElement=document.getElementById("ans-btn");
+        element.addEventListener("click",startGame);
+        var nxtBtn=document.getElementById("next-btn");
+        nxtBtn.addEventListener("click",()=>{
+            currentindex++;
+       
+            setNextQues();
+          
+        })
+        var ques=document.getElementById("question-container");
+        var shuffledQuestion , currentindex;
+        function startGame(){
+         count=0;
+            document.getElementById('submit-btn').classList.add('hide');
+         nxtBtn.innerText="Next";
+            element.classList.add('hide');
+          
+        shuffledQuestion=QuesAndAns.sort(()=>Math.random() - .5)
+        currentindex=0;
+        
+        ques.classList.remove('hide');
+        
+          setNextQues();
+     
+
+        }
+        function thanks(){
+         window.alert("Your Score is: "+ count);
+         
+        }
+        function showQues(question){
+            
+            nextQues.innerText=question.question;
+            question.Answer.forEach(answer=> {
+            const button=document.createElement("button");
+            button.innerText=answer.text;
+            button.classList.add("btn");
+            if(answer.correct)
+            {
+                button.dataset.correct=answer.correct;
+            }
+            nxtBtn.classList.add('hide');
+
+            button.addEventListener("click",selectAnswer);
+            
+            AnsButtonElement.appendChild(button);
+        });
+           }
+        function setNextQues(){
+            
+            
+            resetState();
+    
+            
+            showQues(shuffledQuestion[currentindex]);
+            
+        }
+        function resetState(){
+            clearStatusClass(document.body);
+            while(AnsButtonElement.firstChild)
+            {
+                AnsButtonElement.removeChild(AnsButtonElement.firstChild);
+            }
+        }
+        function selectAnswer(e){
+          const selectedbutton=e.target;
+          const correct=selectedbutton.dataset.correct;
+        if(correct){
+            count++;
+        }
+          setStatusClass(document.body,correct);
+          Array.from(AnsButtonElement.children).forEach(button=>{
+              setStatusClass(button,button.dataset.correct)
+          })
+          if(shuffledQuestion.length>currentindex+1)
+          {
+              nxtBtn.classList.remove('hide');
+            
+          }
+       
+            else{
+              element.innerText="Restart";
+              element.classList.remove('hide');
+             document.getElementById("submit-btn").classList.remove('hide');
+              nxtBtn.classList.add('hide');
+          
+        }
+            
+        }
+
+        function setStatusClass(ele,correct){
+clearStatusClass(ele);
+if(correct){
+    ele.classList.add('correct');
+    
+}
+else{
+    ele.classList.add('wrong');
+}
+nxtBtn.classList.remove('hide');
+
+        }
+        function clearStatusClass(ele){
+ele.classList.remove('correct');
+ele.classList.remove('wrong');
+        }
+  
+    </script>
+</body>
+</html>

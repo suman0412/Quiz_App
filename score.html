@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ViewScore</title>
+    <style>
+        #score{
+          
+          
+           position: absolute;
+           margin: 0;
+           top: 40%;
+           left: 44%;
+           -ms-transform: translateY(-50%);
+           transform: translateY(-50%);
+            
+       
+     
+        }
+        #score-btn{
+            background-color: yellow;
+            width: 200px;
+            height: 50px;
+            color: black;
+            font-size: larger;
+            font-weight: 400;
+            border-radius: 22px;
+            border: 0ch;
+
+        }
+        #score-btn:hover{
+            border: 2px solid yellow;
+            color: black;
+            background-color: white;
+        }
+    </style>
+</head>
+<body>
+    <div id="score">
+        <button id="score-btn">View Score</button>
+    </div>
+    <script>
+        import{
+            count
+        } from './game.html'
+    </script>
+</body>
+</html>

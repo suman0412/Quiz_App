@@ -1,0 +1,80 @@
+body{
+    background-color: rgb(29,26,26);
+    align-items: center;
+
+}
+*{
+  box-sizing: border-box;
+  text-decoration: none;
+ 
+
+}
+#btn{
+    padding: 20px;
+    color: white;
+    text-align: center;
+}
+#container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    display: grid;
+    margin-top: 200px;
+  
+}
+.text{
+    color: white;
+}
+#score-btn{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    display: grid;
+   width: 200px;
+   height: 50px;
+   padding: 10px;
+   background-color: yellow;
+   color: black;
+ border:0ch;
+ border-radius: 22px;
+ font-size: large;
+   font-weight: 400;
+
+  
+}
+#play-btn{
+    display: flex;
+   color: white;
+border-radius: 22px;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    display: grid;
+    width: 200px;
+   height: 50px;
+   background-color:green;
+   border: 0ch;
+   color: white;
+   font-size: large;
+   font-weight: 400;
+}
+#play-btn:hover{
+    background-color: white;
+  border: 2px solid green;
+    border-color: green;
+    color: green;
+}
+#score-btn:hover{
+    background-color: white;
+  border: 2px solid yellow;
+  
+    color:black;
+}
+.text-1{
+   
+   padding: 1px;
+   
+   
+}
